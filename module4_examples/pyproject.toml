@@ -1,0 +1,197 @@
+# ============================================================
+# pyproject.toml - The Modern Python Project Configuration
+# ============================================================
+# This file replaces setup.py, setup.cfg, requirements.txt,
+# and various tool-specific config files.
+
+
+# ------------------------------------------------------------
+# BUILD SYSTEM (Required for pip install)
+# ------------------------------------------------------------
+# Tells pip which build backend to use.
+# Common backends: setuptools, hatchling, flit, poetry-core
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+# ------------------------------------------------------------
+# PROJECT METADATA (PEP 621)
+# ------------------------------------------------------------
+# Core package information for PyPI and pip.
+
+[project]
+name = "mypackage"
+version = "0.1.0"
+description = "A sample Python package demonstrating pyproject.toml"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+
+authors = [
+    {name = "Your Name", email = "you@example.com"}
+]
+
+maintainers = [
+    {name = "Maintainer Name", email = "maintainer@example.com"}
+]
+
+keywords = ["sample", "demo", "package", "tutorial"]
+
+# PyPI classifiers - helps users find your package
+# Full list: https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
+
+# Required dependencies - installed automatically with pip install
+dependencies = [
+    "requests>=2.28.0",
+    "pydantic>=2.0",
+]
+
+
+# ------------------------------------------------------------
+# OPTIONAL DEPENDENCIES
+# ------------------------------------------------------------
+# Install with: pip install mypackage[dev]
+#          or: pip install mypackage[dev,docs]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "ruff",
+    "mypy",
+]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+]
+
+
+# ------------------------------------------------------------
+# CLI ENTRY POINTS (Scripts)
+# ------------------------------------------------------------
+# Creates executable commands when package is installed.
+# Format: "command-name" = "package.module:function"
+
+[project.scripts]
+mypackage-cli = "mypackage.cli:main"
+# After install, running `mypackage-cli` calls main() in mypackage/cli.py
+
+
+# ------------------------------------------------------------
+# PROJECT URLS
+# ------------------------------------------------------------
+# Links displayed on the PyPI page.
+
+[project.urls]
+Homepage = "https://github.com/you/mypackage"
+Documentation = "https://mypackage.readthedocs.io"
+Repository = "https://github.com/you/mypackage.git"
+Issues = "https://github.com/you/mypackage/issues"
+Changelog = "https://github.com/you/mypackage/blob/main/CHANGELOG.md"
+
+
+# ============================================================
+# TOOL CONFIGURATIONS
+# ============================================================
+# These sections replace separate config files like:
+# - pytest.ini → [tool.pytest]
+# - .black.toml → [tool.black]
+# - mypy.ini → [tool.mypy]
+
+
+# ------------------------------------------------------------
+# PYTEST
+# ------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+addopts = "-v --tb=short --strict-markers"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+
+# ------------------------------------------------------------
+# BLACK (Code Formatter)
+# ------------------------------------------------------------
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | build
+    | dist
+)/
+'''
+
+
+# ------------------------------------------------------------
+# RUFF (Fast Linter)
+# ------------------------------------------------------------
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # pycodestyle warnings
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+
+# ------------------------------------------------------------
+# MYPY (Type Checker)
+# ------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+strict_optional = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+
+# ------------------------------------------------------------
+# COVERAGE (Test Coverage)
+# ------------------------------------------------------------
+[tool.coverage.run]
+source = ["src/mypackage"]
+branch = true
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

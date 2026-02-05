@@ -9,10 +9,10 @@ A comprehensive Python course covering Python 3.15 - from fundamentals to advanc
 | 1 | **The Evolution & The Engine** - History, CPython VM, 3.15 JIT | 📝 Planned |
 | 2 | **Data Types & Structures** - Big Six, Control Flow, Collections, Typing | ✅ Complete |
 | 3 | **Python Libraries** - `os` and `sys` modules | ✅ Complete |
-| 4 | **File Systems & Module Architecture** - Scripts, Modules, Project Structure | 📝 Planned |
+| 4 | **File Systems & Module Architecture** - Scripts, Modules, Project Structure | ✅ Complete |
 | 5 | **Memory, GIL, & Internal Performance** - Memory allocation, GIL, Garbage Collection | ✅ Complete |
-| 6 | **Advanced Python Concepts** - Multiprocessing, Threading, AsyncIO, Context Managers | 📝 Planned |
-| 7 | **Modern Tooling and Packaging** - pip, conda, uv, Virtual Environments | 📝 Planned |
+| 6 | **Advanced Python Concepts** - Multiprocessing, Threading, AsyncIO, Context Managers | ✅ Complete |
+| 7 | **Modern Tooling and Packaging** - pip, conda, uv, Virtual Environments | ✅ Complete |
 
 ## Getting Started
 

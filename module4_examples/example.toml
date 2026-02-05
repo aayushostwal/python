@@ -1,0 +1,72 @@
+# TOML (Tom's Obvious Minimal Language) Syntax Example
+# =====================================================
+# TOML is easy to read due to obvious semantics.
+
+
+# BASIC KEY-VALUE PAIRS
+# ---------------------
+title = "My Project"
+version = "1.0.0"
+enabled = true
+count = 42
+pi = 3.14159
+
+
+# STRINGS
+# -------
+name = "Basic string"
+path = 'C:\Users\name'          # Literal string (no escapes)
+multiline = """
+This is a
+multiline string.
+"""
+
+
+# ARRAYS
+# ------
+keywords = ["python", "example", "demo"]
+numbers = [1, 2, 3, 4, 5]
+mixed = ["string", 42, true]    # Mixed types allowed
+
+
+# TABLES (like dictionaries)
+# --------------------------
+[author]
+name = "Jane Doe"
+email = "jane@example.com"
+
+
+# NESTED TABLES
+# -------------
+[database]
+host = "localhost"
+port = 5432
+
+[database.credentials]
+user = "admin"
+# password should be in environment variable, not here!
+
+
+# INLINE TABLES (compact syntax)
+# ------------------------------
+[servers]
+primary = { ip = "10.0.0.1", role = "main" }
+secondary = { ip = "10.0.0.2", role = "backup" }
+
+
+# ARRAY OF TABLES (use [[double brackets]])
+# -----------------------------------------
+[[plugins]]
+name = "plugin-a"
+enabled = true
+priority = 1
+
+[[plugins]]
+name = "plugin-b"
+enabled = false
+priority = 2
+
+[[plugins]]
+name = "plugin-c"
+enabled = true
+priority = 3
